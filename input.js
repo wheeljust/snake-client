@@ -1,3 +1,5 @@
+const { messages, movements } = require('./constants');
+
 // Stores the active TCP connection object.
 let connection;
 
@@ -26,32 +28,12 @@ const handleUserInput = function(key) {
     process.exit();
   }
 
-  if (key === 'w') {
-    connection.write('Move: up');
+  if (movements[key]) {
+    connection.write(`Move: ${movements[key]}`);
   }
 
-  if (key === 's') {
-    connection.write('Move: down');
-  }
-
-  if (key === 'a') {
-    connection.write('Move: left');
-  }
-
-  if (key === 'd') {
-    connection.write('Move: right');
-  }
-
-  if (key === 'y') {
-    connection.write('Say: YAHOO');
-  }
-
-  if (key === 't') {
-    connection.write('Say: Thanks for the food');
-  }
-
-  if (key === 'm') {
-    connection.write('Say: Move it buddy!');
+  if (messages[key]) {
+    connection.write(`Say: ${messages[key]}`);
   }
 
 };
