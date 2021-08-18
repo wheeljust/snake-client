@@ -14,6 +14,7 @@ const connect = function() {
   // interpret incoming data as text
   conn.setEncoding('utf8');
 
+  // log when connected to server and pass user initials to the server
   conn.on('connect', () => {
     console.log("Connection to server established.");
     conn.write('Name: JWW');

@@ -1,12 +1,12 @@
 const { messages, movements } = require('./constants');
 
-// Stores the active TCP connection object.
-let connection;
-
 /**
  * Setup User Interface
  * Specifically, so that we can handle user input via stdin
  */
+
+// Stores the active TCP connection object.
+let connection;
 
 const setupInput = function(conn) {
   connection = conn;
@@ -24,18 +24,9 @@ const setupInput = function(conn) {
  */
 
 const handleUserInput = function(key) {
-  if (key === '\u0003') {
-    process.exit();
-  }
-
-  if (movements[key]) {
-    connection.write(`Move: ${movements[key]}`);
-  }
-
-  if (messages[key]) {
-    connection.write(`Say: ${messages[key]}`);
-  }
-
+  if (key === '\u0003') process.exit();
+  if (movements[key]) connection.write(`Move: ${movements[key]}`);
+  if (messages[key]) connection.write(`Say: ${messages[key]}`);
 };
 
 module.exports = { setupInput };
