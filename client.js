@@ -9,7 +9,7 @@ const connect = function() {
   const conn = net.createConnection({
     host: IP,
     port: PORT
-  });
+  },);
 
   // interpret incoming data as text
   conn.setEncoding('utf8');
@@ -21,9 +21,13 @@ const connect = function() {
   });
 
   conn.on('data', (data) => {
-    console.log(data);
+    console.log('Server Message:', data);
   });
 
+  conn.on('end', (data) => {
+    console.log('Disconnected from server, Good Bye!');
+  });
+  
   return conn;
 };
 
